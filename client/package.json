@@ -1,0 +1,45 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.3.0",
+    "@material-ui/icons": "^4.2.1",
+    "@nivo/bar": "^0.59.2",
+    "@nivo/calendar": "^0.59.1",
+    "@nivo/heatmap": "^0.59.2",
+    "@nivo/radar": "^0.59.1",
+    "axios": "^0.19.0",
+    "d3": "^5.9.7",
+    "material-table": "^1.43.0",
+    "nivo": "^0.31.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-papaparse": "^1.0.5",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.0.1",
+    "yarn": "^1.17.3"
+  },
+  "proxy": "http://localhost:5000",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
