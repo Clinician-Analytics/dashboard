@@ -2,7 +2,7 @@ version: '3'
 
 services:
   server:
-    container_name: upload-api
+    container_name: cad-upload-api
     build:
       context: ./server/
       dockerfile: Dockerfile
