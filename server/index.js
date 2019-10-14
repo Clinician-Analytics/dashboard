@@ -10,12 +10,12 @@ app.use(express.json({ extended: false }));
 
 const users = require('./routes/api/users');
 const auth = require('./routes/api/auth');
-const upload = require('./routes/api/upload');
+const reports = require('./routes/api/reports');
 
 // Use Routes
 app.use('/users', users);
 app.use('/auth', auth);
-app.use('/upload', upload);
+app.use('/reports', reports);
 
 // Server static assets if in production
 if (process.env.NODE_ENV === 'production') {
