@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AnnualDataContext } from "../../contexts/AnnualDataContext";
 import { Button } from "@material-ui/core";
-import axios from "axios";
 import Papa from "papaparse";
+import axios from "axios";
 
 export default function FileUploadForm() {
+  const [annualData, setAnnualData] = useContext(AnnualDataContext)
   const [file, setFile] = useState({});
 
   //TODO handle setErrors if user enters an invalid email
@@ -11,18 +13,12 @@ export default function FileUploadForm() {
 
   const handleFileSelect = e => {
     setFile(e.target.files[0])
-    // Papa.parse(e.target.files[0], {
-    //   complete: function(results) {
-    //     setFile(results);
-    //     console.log(results);
-    //   }
-    // });
   };
 
   const handleTest = async e => {
     try {
-      const res = await axios.get('/')
-      console.log("worked", [res])
+      const res = await axios.get('/upload/test')
+      console.log(res.data.msg)
     } catch (err) {
       if(err.response.status === 500) {
         console.log('There was a problem with the server')
@@ -33,23 +29,23 @@ export default function FileUploadForm() {
   }
 
   const handleUpload = async e => {
-    const formData = new FormData();
-    formData.append('file', file)
-    try {
-      const res = await axios.post("/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
+    Papa.parse(file, {
+      header: true,
+      complete: async results => {
+        try {
+          setAnnualData(results)
+          console.log(annualData)
+          // const res = await axios.post("/upload", results)
+          // console.log(res)
+        } catch(err) {
+          if(err.response.status === 500) {
+            console.log('There was a problem with the server')
+          } else {
+            console.log(err.response.data.msg);
+          }
         }
-      })
-      const { fileName, filePath, guid } = res.data;
-      console.log({ fileName, filePath, guid})
-    } catch(err) {
-      if(err.response.status === 500) {
-        console.log('There was a problem with the server')
-      } else {
-        console.log(err.response.data.msg);
       }
-    }
+    });
   }
 
   return (
