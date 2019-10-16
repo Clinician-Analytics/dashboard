@@ -14,7 +14,7 @@ ENV NODE_ENV development
 
 RUN npm install -g nodemon
 COPY ./package*.json ./
-RUN npm install -g
+RUN npm install
 
 COPY ./ ./
 
