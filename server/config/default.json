@@ -1,4 +1,0 @@
-{
-    "mongoURI": "mongodb+srv://ryanoconnor:TheCatInTheHat@cad-dashboard-wie2l.azure.mongodb.net/cad-dashboard?retryWrites=true&w=majority",
-    "jwtSecret": "SecretToken"
-}
