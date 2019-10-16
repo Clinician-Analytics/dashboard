@@ -66,4 +66,17 @@ router.post("/", [
     }
 });
 
+// @route   POST users
+// @desc    Register user
+// @access  Public
+router.post("/", [
+    check("firstName", "First name is required").not().isEmpty(),
+    check("lastName", "Last name is required").not().isEmpty(),
+    check("email", "Please include a valid email").isEmail(),
+    check("p_number", "Please include your state issued P number").not().isEmpty()
+], async (req, res) => {
+    console.log(request.body.data)
+    res.json({msg: "This file has been successfully uploaded!"})
+});
+
 module.exports = router;

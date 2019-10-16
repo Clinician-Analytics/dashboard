@@ -21,6 +21,10 @@ const UserSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
+    }, 
+    p_number: {
+        type: String,
+        default: required
     }
 });
 
