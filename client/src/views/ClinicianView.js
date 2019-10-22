@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Paper, Grid, Typography } from "@material-ui/core";
 import CalendarHeatmap from "../components/visualizations/clinician/CalendarHeatmap";
-import MonthlyHeatmap from "../components/visualizations/clinician/MonthlyHeatmap";
+// import MonthlyHeatmap from "../components/visualizations/clinician/MonthlyHeatmap";
 import CallTypeRadar from "../components/visualizations/clinician/CallTypeRadar";
 import axios from 'axios';
 
@@ -76,7 +76,7 @@ export default function ClinicianView() {
             <Typography variant="h6" component="h6">
               Monthy Call Volume for Individual Provider
             </Typography>
-            <MonthlyHeatmap />
+            {/* <MonthlyHeatmap /> */}
           </Paper>
         </Grid>
         <Grid item xs={3}>
