@@ -106,3 +106,6 @@ venv.bak/
 
 node_modules/
 server/data/ryan..email.com/405gzm1lk1ccz724/in.json
+config/*
+server/config/default.json
+server/config/connect.json

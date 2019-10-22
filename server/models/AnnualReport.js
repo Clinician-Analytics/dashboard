@@ -77,4 +77,4 @@ const AnnualReportSchema = new Schema({
     }
 });
 
-module.exports = AnnualReport = mongoose.model("annualReport", AnnualReportSchema);
+module.exports = AnnualReport = mongoose.model("annual_report_2018", AnnualReportSchema);		
