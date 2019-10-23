@@ -71,7 +71,10 @@ const AnnualReportSchema = new Schema({
     support_sign: {
         type: String
     },
-    date: {
+    heatmap_date: {
+        type: String
+    },
+    dateCreated: {
         type: Date,
         default: Date.now
     }

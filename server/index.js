@@ -10,11 +10,13 @@ app.use(express.json({ extended: false, limit:'50mb' }));
 
 const users = require('./routes/api/users');
 const auth = require('./routes/api/auth');
+const uploads = require('./routes/api/uploads');
 const reports = require('./routes/api/reports');
 
 // Use Routes
 app.use('/users', users);
 app.use('/auth', auth);
+app.use('/uploads', uploads);
 app.use('/reports', reports);
 
 // Server static assets if in production
