@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Paper, Grid, Typography } from "@material-ui/core";
 import CalendarHeatmap from "../components/visualizations/clinician/CalendarHeatmap";
-import MonthlyHeatmap from "../components/visualizations/clinician/MonthlyHeatmap";
+// import MonthlyHeatmap from "../components/visualizations/clinician/MonthlyHeatmap";
 import CallTypeRadar from "../components/visualizations/clinician/CallTypeRadar";
-import axios from 'axios';
+// import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,36 +18,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ClinicianView() {
-  const [uploadedFile, setUploadedFile] = useState(null)
   const classes = useStyles();
-
-  const handleUploadFile = e => {
-    setUploadedFile(e.target.files[0])
-    console.log(uploadedFile)
-  }
-
-  const handleSubmit = async e => {
-    e.preventDefault()
-    const formData = new FormData();
-    formData.append('file', uploadedFile)
-    try {
-      console.log(uploadedFile)
-      const res = await axios.post("/upload", formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      })
-      const { fileName, filePath, guid } = res.data;
-      setUploadedFile({ fileName, filePath, guid})
-      console.log(uploadedFile)
-    } catch(err) {
-      if(err.response.status === 500) {
-        console.log('There was a problem with the server')
-      } else {
-        console.log(err.response.data.msg);
-      }
-    }
-  }
 
   return (
     <div className={classes.root}>
@@ -76,11 +47,8 @@ export default function ClinicianView() {
             <Typography variant="h6" component="h6">
               Monthy Call Volume for Individual Provider
             </Typography>
-            <MonthlyHeatmap />
+            {/* <MonthlyHeatmap /> */}
           </Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}><input onChange={handleUploadFile} type="file"/> <button onClick={handleSubmit}>submit</button></Paper>
         </Grid>
         <Grid item xs={3}>
           <Paper className={classes.paper}>xs=3</Paper>

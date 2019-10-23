@@ -2,14 +2,13 @@ import React, { useState, useContext } from "react";
 import { AnnualDataContext } from "../../contexts/AnnualDataContext";
 import { Button } from "@material-ui/core";
 import Papa from "papaparse";
+import moment from "moment"
 import axios from "axios";
 
 export default function FileUploadForm() {
   const [annualData, setAnnualData] = useContext(AnnualDataContext)
   const [file, setFile] = useState({});
-
-  //TODO handle setErrors if user enters an invalid email
-  // const [errors, setErrors] = useState({});
+  const [, setErrors] = useState({});
 
   const handleFileSelect = e => {
     setFile(e.target.files[0])
@@ -17,26 +16,32 @@ export default function FileUploadForm() {
 
   const handleTest = async e => {
     try {
-      const res = await axios.get('/upload/test')
+      const res = await axios.get('/reports/test')
       console.log(res.data.msg)
+      setErrors({})
     } catch (err) {
-      if(err.response.status === 500) {
+      if (err.response.status === 500) {
         console.log('There was a problem with the server')
+        setErrors('There was a problem with the server')
       } else {
         console.log(err.response.data.msg);
+        setErrors(err.response.data.msg);
       }
     }
   }
 
-  const handleUpload = async e => {
+  const handleSubmit = async e => {
     Papa.parse(file, {
       header: true,
       complete: async results => {
         try {
+          results.data.forEach(item => {
+            item.heatmap_date = moment(item.callreceive_time).format("YYYY-MM-DD")
+          })
           setAnnualData(results)
           console.log(annualData)
-          // const res = await axios.post("/upload", results)
-          // console.log(res)
+          const res = await axios.post("/uploads", results)
+          console.log(res)
         } catch(err) {
           if(err.response.status === 500) {
             console.log('There was a problem with the server')
@@ -67,7 +72,7 @@ export default function FileUploadForm() {
           ))}
         </ul>
       ) : null} */}
-      <Button onClick={handleUpload}>Upload</Button>
+      <Button onClick={handleSubmit}>Sumbit</Button>
       <Button onClick={handleTest}>Test Server</Button>
     </div>
   );

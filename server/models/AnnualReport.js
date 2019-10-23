@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const AnnualReportSchema = new Schema ({
+const AnnualReportSchema = new Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    },
     clinician_id: {
         type: String,
         required: true
@@ -15,13 +19,15 @@ const AnnualReportSchema = new Schema ({
         required: true
     },
     role_status: {
-        type: String
+        type: String,
+        required: true
     },
     unit: {
-        type: String
+        type: String,
+        required: true
     },
     callreceive_time: {
-        type: String
+        type: String,
     },
     dispatch_time: {
         type: String
@@ -65,13 +71,10 @@ const AnnualReportSchema = new Schema ({
     support_sign: {
         type: String
     },
-    first: {
+    heatmap_date: {
         type: String
     },
-    first: {
-        type: String
-    },
-    date: {
+    dateCreated: {
         type: Date,
         default: Date.now
     }
