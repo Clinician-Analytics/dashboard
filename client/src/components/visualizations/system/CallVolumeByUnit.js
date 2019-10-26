@@ -1,24 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { ResponsiveBar } from "@nivo/bar";
-import axios from "axios";
-// make sure parent container have a defined height when using
-// responsive component, otherwise height will be 0 and
-// no chart will be rendered.
-// website examples showcase many properties,
-// you'll often use just a few of them.
-export default function CallVolumeByUnit() {
-  const [callVolumeByUnit, setCallVolumeByUnit] = useState(null)
 
-  useEffect(() => {
-    const handleGetData = async () => {
-      const res = await axios.post("/reports/annual-reports")
-      setCallVolumeByUnit(res.data.callVolumeByUnitData)
-      console.log(res.data)
-    }
-    handleGetData()
-  }, [])
+export default function CallVolumeByUnit(props) {
+  const { callVolumeByUnit } = props;
   return (
-    <div style={{ height: "300px" }}>
+    <div style={{ height: "425px" }}>
       {callVolumeByUnit ?
         <ResponsiveBar
           data={callVolumeByUnit}
