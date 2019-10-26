@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AnnualDataContext } from "../../contexts/AnnualDataContext";
 import { Button } from "@material-ui/core";
 import Papa from "papaparse";
-import moment from "moment";
+import moment from "moment"
 import axios from "axios";
 
 export default function FileUploadForm() {
+  const [annualData, setAnnualData] = useContext(AnnualDataContext)
   const [file, setFile] = useState({});
-  const [errors, setErrors] = useState({
-    submitError: "",
-    serverError: ""
-  });
+  const [errors, setErrors] = useState({});
 
   const handleFileSelect = e => {
     setFile(e.target.files[0])
@@ -22,8 +21,9 @@ export default function FileUploadForm() {
         try {
           results.data.forEach(item => {
             item.heatmap_date = moment(item.callreceive_time).format("YYYY-MM-DD")
-            item.year = moment(item.callreceive_time).format("YYYY")
           })
+          setAnnualData(results)
+          console.log(annualData)
           const res = await axios.post("/uploads", results)
           console.log(res)
           setErrors({})

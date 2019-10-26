@@ -24,7 +24,7 @@ router.post("/annual-reports", async (req, res) => {
                 $unwind:"$day"
             },
             {
-                $group: { _id: "$day", value: { $sum:1 } }
+                $group: { _id: "$day", value: { $sum:1} }
             },
             { $sort: { _id: 1 } }
         ])
@@ -39,29 +39,12 @@ router.post("/annual-reports", async (req, res) => {
                 $unwind:"$unit"
             },
             {
-                $group: { _id: "$unit", callVolume: { $sum:1 } }
+                $group: { _id: "$unit", callVolume: { $sum:1} }
             },
-            { $match: { callVolume: { $gt: 200} }},
             { $sort: { _id: 1 } }
         ])
-        const requestedByData = await AnnualReport.aggregate([
-            { $match: {} },
-            { $group: { _id: "$incident_id", requested_by: { $addToSet: '$requested_by'}}},
-            {
-                $unwind:"$requested_by"
-            },
-            {
-                $group: { _id: "$requested_by", value: { $sum:1 } }
-            }
-        ])
-        requestedByData.map(item => {
-            item.id = item._id
-            item.label = item._id
-            delete item._id
-        })
         contents.heatmapData = heatmapData
         contents.callVolumeByUnitData = callVolumeByUnitData
-        contents.requestedByData = requestedByData
         console.log(contents)
         res.send(contents)
     } catch (err) {
