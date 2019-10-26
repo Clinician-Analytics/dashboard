@@ -71,13 +71,22 @@ const AnnualReportSchema = new Schema({
     support_sign: {
         type: String
     },
+    incident_id: {
+        type: String
+    },
+    incident_date: {
+        type: String
+    },
+    requested_by: {
+        type: String
+    },
     heatmap_date: {
         type: String
     },
-    dateCreated: {
+    date_created: {
         type: Date,
         default: Date.now
     }
 });
 
-module.exports = AnnualReport = mongoose.model("annual_report_2018", AnnualReportSchema);		
+module.exports = AnnualReport = mongoose.model("annual_report", AnnualReportSchema);		
