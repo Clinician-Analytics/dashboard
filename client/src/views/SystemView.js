@@ -5,7 +5,7 @@ import CallVolumeByUnit from "../components/visualizations/system/CallVolumeByUn
 export default function SystemView() {
   return (
     <div>
-      <h1>Sytem View</h1>
+      <h1>System View</h1>
       <h3>Total Call Volume</h3>
       <CalendarHeatmap />
       <h3>Total Call Volume</h3>
