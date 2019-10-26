@@ -1,4 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://ryanoconnor:America@cad-dashboard-wie2l.azure.mongodb.net/cad-dashboard?retryWrites=true&w=majority",
-    "jwtSecret": "SecretToken"
+  "mongoURI": "mongodb+srv://rstem:MakeAmericaGreatAgain@cad-dashboard-wie2l.azure.mongodb.net/cad-dashboard?retryWrites=true&w=majority",
+  "jwtSecret": "SecretToken"
 }
