@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ResponsiveCalendar } from "@nivo/calendar";
+import axios from "axios";
+// import { calendarData } from "../../../formData/calendarData"
 
-export default function CalendarHeatmap(props) {
-  const { calendarData } = props
+export default function CalendarHeatmap() {
+  const [calendarData, setCalendarData] = useState(null)
+
+  useEffect(() => {
+    const handleGetData = async () => {
+      const res = await axios.post("/reports/annual-reports")
+      setCalendarData(res.data.heatmapData)
+      console.log(res.data.heatmapData)
+      console.log(calendarData)
+    }
+    handleGetData()
+  }, [])
 
   return (
-    <div style={{ height: "375px" }}>
+    <div style={{ height: "350px" }}>
     {calendarData ?
       <ResponsiveCalendar
         data={calendarData}
