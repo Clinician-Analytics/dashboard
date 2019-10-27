@@ -1,41 +1,54 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Paper, Grid, Typography } from "@material-ui/core";
-import CallTypeRadar from "../components/visualizations/clinician/CallTypeRadar";
+import React, { useState } from "react";
+import { Button, TextField} from "@material-ui/core";
+import CalendarHeatmap from "../components/visualizations/system/CalendarHeatmap";
+import axios from "axios";
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary
-  }
-}));
+
+
 
 export default function ClinicianView() {
-  const classes = useStyles();
+  const [data, setData] = useState(null);
+  const [inputs, setInputs] = useState({
+    pNumber: ""
+  });
+  const [loading, setLoading] = useState(false);
+
+  const handleLoading = () => {
+  setLoading(true)
+  setTimeout(() => {
+
+      setLoading(false)
+    }, 2000);
+  }
+  
+  const handleChange = e => {
+    e.preventDefault()
+    setInputs({...inputs, [e.target.name]: e.target.value})
+  }
+
+  const handleGetData = async () => {
+    handleLoading()
+    const res = await axios.post("/reports/clinician-reports/" + inputs.pNumber);
+    setData(res.data);
+    console.log(data)
+  };
 
   return (
-    <div className={classes.root}>
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={8}>
-          <Paper className={classes.paper}>
-            <Typography variant="h6" component="h6">
-              Annual Call Volume for Individual Provider
-            </Typography>
-          </Paper>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Paper className={classes.paper}>
-            <Typography variant="h6" component="h6">
-              Call Type for Individual Provider
-            </Typography>
-            <CallTypeRadar />
-          </Paper>
-        </Grid>
-      </Grid>
+    <div>
+      <h1>Clinician View</h1>
+      <TextField
+        id="pNumber"
+        name="pNumber"
+        onChange={handleChange}
+      />
+      <Button variant="contained" color="secondary" onClick={handleGetData}>Get Annual Reports</Button>
+      <span>{loading ? "Loading Data..." : null}</span>
+      {data ?
+        <>
+          <h3>Total Call Volume by Day</h3>
+          <CalendarHeatmap calendarData={data.heatmapData} />
+        </>
+        : null}
     </div>
   );
 }

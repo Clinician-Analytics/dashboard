@@ -69,22 +69,31 @@ router.post("/annual-reports", async (req, res) => {
     }
 });
 
-// @route   POST /reports/clinician-report
+// @route   POST /reports/clinician-report/:pNumber
 // @desc    Post annual reports data for generating the heatmap the report parameter is the year of the report ie annual_report_2019
 // @access  Public
-router.post("/clinician-reports", async (req, res) => {
+router.post("/clinician-reports/:pNumber", async (req, res) => {
+    const pNumber = req.params.pNumber
+    const contents = {}
     try {
         const heatmapData = await AnnualReport.aggregate([
-            { $match: {} },
-            { $group: { _id: "$heatmap_date", value: { $sum: 1 } } },
+            { $match: { "id": pNumber } },
+            { $group: { _id: "$incident_id", day: { $addToSet: '$heatmap_date'}}},
+            {
+                $unwind:"$day"
+            },
+            {
+                $group: { _id: "$day", value: { $sum:1 } }
+            },
             { $sort: { _id: 1 } }
         ])
         heatmapData.map(day => {
             day.day = day._id
             delete day._id
         })
-        console.log(heatmapData)
-        res.send(heatmapData)
+        contents.heatmapData = heatmapData
+        console.log(contents)
+        res.send(contents)
     } catch (err) {
         res.status(500).send('Server Error')
     }

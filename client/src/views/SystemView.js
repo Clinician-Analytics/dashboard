@@ -12,9 +12,9 @@ export default function SystemView() {
   const handleLoading = () => {
     setLoading(true)
     setTimeout(() => {
-      
-    setLoading(false)
-   }, 3000);
+
+      setLoading(false)
+    }, 2000);
   }
 
   const handleGetData = async () => {
@@ -28,17 +28,17 @@ export default function SystemView() {
     <div>
       <h1>Sytem View</h1>
       <Button variant="contained" color="secondary" onClick={handleGetData}>Get Annual Reports</Button>
-      <span>{loading}</span>
-      {data ? 
-      <>
-      <h3>Total Call Volume by Day</h3>
-      <CalendarHeatmap calendarData={data.heatmapData} />
-      <h3>Total Call Volume by Unit</h3>
-      <CallVolumeByUnit callVolumeByUnit={data.callVolumeByUnitData} />
-      <h3>Who Called?</h3>
-      <RequestedByPie requestedBy={data.requestedByData} />
-      </>
-      : null }
+      <span>{loading ? "Loading Data..." : null}</span>
+      {data ?
+        <>
+          <h3>Total Call Volume by Day</h3>
+          <CalendarHeatmap calendarData={data.heatmapData} />
+          <h3>Total Call Volume by Unit</h3>
+          <CallVolumeByUnit callVolumeByUnit={data.callVolumeByUnitData} />
+          <h3>Who Called?</h3>
+          <RequestedByPie requestedBy={data.requestedByData} />
+        </>
+        : null}
     </div>
   );
 }

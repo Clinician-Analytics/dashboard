@@ -12,7 +12,7 @@ export default function CalendarHeatmap(props) {
         from="2019-01-01"
         to="2019-12-31"
         emptyColor="#eeeeee"
-        colors={["#A4A4A4", "#E1F2FF", "#91D1FF", "#42B0FF", "#0482DD", "#002F50"]}
+        colors={["#E1F2FF", "#E1F2FF", "#91D1FF", "#42B0FF", "#0482DD", "#002F50"]}
         margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
         yearSpacing={40}
         monthBorderColor="#ffffff"
