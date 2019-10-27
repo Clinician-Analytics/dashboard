@@ -18,6 +18,7 @@ import setAuthToken from "./utils/setAuthToken";
 import { Fragment } from "react";
 
 import "./App.css";
+import Register from "./views/Register";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -36,6 +37,7 @@ const App = () => (
           <Route exact path="/officer-view" component={OfficerView} />
           <Route exact path="/clinician-view" component={ClinicianView} />
           <Route exact path="/system-view" component={SystemView} />
+          <Route exact path="/register" component={Register} />
         </Switch>
       </Fragment>
     </Router>

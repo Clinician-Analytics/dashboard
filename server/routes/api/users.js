@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const config = require("config");
 const { check, validationResult } = require("express-validator");
 
 const User = require("../../models/User");
@@ -23,7 +24,7 @@ router.post(
     check("lastName", "Last name is required")
       .not()
       .isEmpty(),
-    check("email", "Please include a valid email").isEmail(),
+    check("email", "Please enter your EMS agency email").isEmail(),
     check("p_number", "Please enter your state issued P Number")
       .not()
       .isEmpty(),
@@ -39,7 +40,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
     // User Registration
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, p_number, agency, password } = req.body;
     try {
       // Check if email is already registered
       let user = await User.findOne({ email });
@@ -87,24 +88,27 @@ router.post(
 // @route   POST users
 // @desc    Register user
 // @access  Public
-router.post(
-  "/",
-  [
-    check("firstName", "First name is required")
-      .not()
-      .isEmpty(),
-    check("lastName", "Last name is required")
-      .not()
-      .isEmpty(),
-    check("email", "Please include a valid email").isEmail(),
-    check("p_number", "Please include your state issued P number")
-      .not()
-      .isEmpty()
-  ],
-  async (req, res) => {
-    console.log(req.body.data);
-    res.json({ msg: "This file has been successfully uploaded!" });
-  }
-);
+// router.post(
+//   "/",
+//   [
+//     check("firstName", "First name is required")
+//       .not()
+//       .isEmpty(),
+//     check("lastName", "Last name is required")
+//       .not()
+//       .isEmpty(),
+//     check("p_number", "Please include your state issued P number")
+//       .not()
+//       .isEmpty(),
+//     check("email", "Please include a valid email").isEmail(),
+//     check("agency", "Please include your EMS agency name e.i. OCES")
+//       .not()
+//       .isEmpty()
+//   ],
+//   async (req, res) => {
+//     console.log(req.body.data);
+//     res.json({ msg: "This file has been successfully uploaded!" });
+//   }
+// );
 
 module.exports = router;

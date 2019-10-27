@@ -10,35 +10,36 @@ export default function SystemView() {
   const [loading, setLoading] = useState(false);
 
   const handleLoading = () => {
-    setLoading(true)
+    setLoading(true);
     setTimeout(() => {
-      
-    setLoading(false)
-   }, 3000);
-  }
+      setLoading(false);
+    }, 3000);
+  };
 
   const handleGetData = async () => {
-    handleLoading()
+    handleLoading();
     const res = await axios.post("/reports/annual-reports");
     setData(res.data);
-    console.log(data)
+    console.log(data);
   };
 
   return (
     <div>
-      <h1>Sytem View</h1>
-      <Button variant="contained" color="secondary" onClick={handleGetData}>Get Annual Reports</Button>
+      <h1>System View</h1>
+      <Button variant="contained" color="secondary" onClick={handleGetData}>
+        Get Annual Reports
+      </Button>
       <span>{loading}</span>
-      {data ? 
-      <>
-      <h3>Total Call Volume by Day</h3>
-      <CalendarHeatmap calendarData={data.heatmapData} />
-      <h3>Total Call Volume by Unit</h3>
-      <CallVolumeByUnit callVolumeByUnit={data.callVolumeByUnitData} />
-      <h3>Who Called?</h3>
-      <RequestedByPie requestedBy={data.requestedByData} />
-      </>
-      : null }
+      {data ? (
+        <>
+          <h3>Total Call Volume by Day</h3>
+          <CalendarHeatmap calendarData={data.heatmapData} />
+          <h3>Total Call Volume by Unit</h3>
+          <CallVolumeByUnit callVolumeByUnit={data.callVolumeByUnitData} />
+          <h3>Who Called?</h3>
+          <RequestedByPie requestedBy={data.requestedByData} />
+        </>
+      ) : null}
     </div>
   );
 }
