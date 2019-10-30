@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 //import { AnnualDataProvider } from "./contexts/AnnualDataContext";
 // import Navigation from "./components/menus/Navigation";
 import Navbar from "./components/menus/Navbar";
-import Landing from "./views/Landing";
 import AdminView from "./views/AdminView";
 import OfficerView from "./views/OfficerView";
 import ClinicianView from "./views/ClinicianView";
