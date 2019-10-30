@@ -28,8 +28,7 @@ const UserSchema = new mongoose.Schema({
   },
   p_number: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   }
 });
 
