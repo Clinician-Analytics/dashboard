@@ -3,6 +3,7 @@ const router = express.Router();
 const { check, validationResult } = require("express-validator");
 const auth = require("../../middleware/auth");
 
+const User = require("../../models/User");
 const AnnualReport = require("../../models/AnnualReport");
 
 // @route   GET /reports/test
@@ -73,121 +74,34 @@ router.post("/annual-reports", auth, async (req, res) => {
   }
 });
 
-// @route   POST /reports/clinician-report/:pNumber
-// @desc    Post annual reports data for generating the heatmap the report parameter is the year of the report ie annual_report_2019
-// @access  Private
-router.post("/clinician-reports/:pNumber", auth, async (req, res) => {
-  const pNumber = req.params.pNumber;
-  const contents = {};
-  try {
-    const heatmapData = await AnnualReport.aggregate([
-      { $match: { id: pNumber } },
-      { $group: { _id: "$incident_id", day: { $addToSet: "$heatmap_date" } } },
-      {
-        $unwind: "$day"
-      },
-      {
-        $group: { _id: "$day", value: { $sum: 1 } }
-      },
-      { $sort: { _id: 1 } }
-    ]);
-    heatmapData.map(day => {
-      day.day = day._id;
-      delete day._id;
-    });
-    contents.heatmapData = heatmapData;
-    console.log(contents);
-    res.send(contents);
-  } catch (err) {
-    res.status(500).send("Server Error");
-  }
-});
-
-// Bring in user model
-const User = require("../../models/User");
-// @route   GET /reports/me
-// @desc    Get current users profile
-// @access  Private
-router.get("/me", auth, async (req, res) => {
-  try {
-    const profile = await AnnualReport.findOne({ user: req.user.id }).populate(
-      "user",
-      ["lastName", "p_number"]
-    );
-    if (!profile) {
-      return res.status(400).json({ msg: "There is no profile for this user" });
+// @access  Public
+router.post("/clinician-reports", auth, async (req, res) => {
+    const user = await User.findById(req.user.id).select("-password");
+    const p_number = user.p_number
+    console.log(p_number)
+    const contents = {}
+    try {
+        const heatmapData = await AnnualReport.aggregate([
+            { $match: { "id": p_number } },
+            { $group: { _id: "$incident_id", day: { $addToSet: '$heatmap_date'}}},
+            {
+                $unwind:"$day"
+            },
+            {
+                $group: { _id: "$day", value: { $sum:1 } }
+            },
+            { $sort: { _id: 1 } }
+        ])
+        heatmapData.map(day => {
+            day.day = day._id
+            delete day._id
+        })
+        contents.heatmapData = heatmapData
+        console.log(contents)
+        res.send(contents)
+    } catch (err) {
+        res.status(500).send('Server Error')
     }
-    res.json(profile);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server error");
-  }
-});
-
-// @route   POST /reports/clinician/me
-// @desc    Post clinician data based on p_number from user model
-// @access  Private
-// router.get("/user/:p_number", async (req, res) => {
-//   const contents = {};
-//   try {
-//     // pull in p-number from user profile
-//     const pNumber = await User.findOne({ user: req.params.p_number });
-//     if (!pNumber) return res.status(400).json({ msg: "P Number not found" });
-//     res.json(pNumber);
-//     // aggregate heatmap data
-//     const heatmapData = await AnnualReport.aggregate([
-//       { $match: { id: pNumber } },
-//       { $group: { _id: "$incident_id", day: { $addToSet: "$heatmap_date" } } },
-//       {
-//         $unwind: "$day"
-//       },
-//       {
-//         $group: { _id: "$day", value: { $sum: 1 } }
-//       },
-//       { $sort: { _id: 1 } }
-//     ]);
-//     heatmapData.map(day => {
-//       day.day = day._id;
-//       delete day._id;
-//     });
-//     contents.heatmapData = heatmapData;
-//     console.log(contents);
-//     res.send(contents);
-//   } catch (err) {
-//     res.status(500).send("Server Error");
-//   }
-// });
-
-// @route   POST /reports/clinician/me
-// @desc    Post clinician data based on p_number from user model
-// @access  Private
-
-router.post("/clinician-test/:pNumber", auth, async (req, res) => {
-  const pNumber = req.body.p_number;
-  const contents = {};
-  try {
-    const heatmapData = await AnnualReport.aggregate([
-      { $match: { id: pNumber } },
-      { $group: { _id: "$incident_id", day: { $addToSet: "$heatmap_date" } } },
-      {
-        $unwind: "$day"
-      },
-      {
-        $group: { _id: "$day", value: { $sum: 1 } }
-      },
-      { $sort: { _id: 1 } }
-    ]);
-    heatmapData.map(day => {
-      day.day = day._id;
-      delete day._id;
-    });
-    contents.heatmapData = heatmapData;
-    console.log(contents);
-    console.log(pNumber);
-    res.send(contents);
-  } catch (err) {
-    res.status(500).send("Server Error");
-  }
 });
 
 module.exports = router;
