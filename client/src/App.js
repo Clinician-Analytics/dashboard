@@ -3,13 +3,15 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 //import { AnnualDataProvider } from "./contexts/AnnualDataContext";
 // import Navigation from "./components/menus/Navigation";
 import Navbar from "./components/menus/Navbar";
-import Landing from "./views/Landing";
+// import Landing from "./views/Landing";
 import AdminView from "./views/AdminView";
 import OfficerView from "./views/OfficerView";
 import ClinicianView from "./views/ClinicianView";
 import SystemView from "./views/SystemView";
 import Login from "./views/Login";
 import Alert from "./views/Alert";
+import Dashboard from "./views/dashboard/Dashboard";
+import PrivateRoute from "./components/routing/PrivateRoute";
 
 // redux
 import { Provider } from "react-redux";
@@ -38,6 +40,7 @@ const App = () => (
           <Route exact path="/clinician-view" component={ClinicianView} />
           <Route exact path="/system-view" component={SystemView} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/dashboard" component={Dashboard} />
         </Switch>
       </Fragment>
     </Router>
