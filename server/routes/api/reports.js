@@ -72,12 +72,14 @@ router.post("/annual-reports", async (req, res) => {
 // @route   POST /reports/clinician-report/:pNumber
 // @desc    Post annual reports data for generating the heatmap the report parameter is the year of the report ie annual_report_2019
 // @access  Public
-router.post("/clinician-reports/:pNumber", async (req, res) => {
-    const pNumber = req.params.pNumber
+router.post("/clinician-reports", auth, async (req, res) => {
+    const user = await User.findById(req.user.id).select("-password");
+    const p_number = user.p_number
+    console.log(p_number)
     const contents = {}
     try {
         const heatmapData = await AnnualReport.aggregate([
-            { $match: { "id": pNumber } },
+            { $match: { "id": p_number } },
             { $group: { _id: "$incident_id", day: { $addToSet: '$heatmap_date'}}},
             {
                 $unwind:"$day"
