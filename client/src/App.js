@@ -9,6 +9,8 @@ import ClinicianView from "./views/ClinicianView";
 import SystemView from "./views/SystemView";
 import Login from "./views/Login";
 import Alert from "./views/Alert";
+import Dashboard from "./views/dashboard/Dashboard";
+import PrivateRoute from "./components/routing/PrivateRoute";
 
 // redux
 import { Provider } from "react-redux";
@@ -17,6 +19,7 @@ import setAuthToken from "./utils/setAuthToken";
 import { Fragment } from "react";
 
 import "./App.css";
+import Register from "./views/Register";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -35,6 +38,8 @@ const App = () => (
           <Route exact path="/officer-view" component={OfficerView} />
           <Route exact path="/clinician-view" component={ClinicianView} />
           <Route exact path="/system-view" component={SystemView} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/dashboard" component={Dashboard} />
         </Switch>
       </Fragment>
     </Router>
