@@ -39,7 +39,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
     // User Registration
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, p_number, agency, password } = req.body;
     try {
       // Check if email is already registered
       let user = await User.findOne({ email });
