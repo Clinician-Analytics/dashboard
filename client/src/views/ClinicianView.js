@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import { Button, TextField } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import CalendarHeatmap from "../components/visualizations/system/CalendarHeatmap";
 import axios from "axios";
 
 export default function ClinicianView() {
   const [data, setData] = useState(null);
-  const [inputs, setInputs] = useState({
-    pNumber: ""
-  });
   const [loading, setLoading] = useState(false);
 
   const handleLoading = () => {
@@ -17,15 +14,10 @@ export default function ClinicianView() {
     }, 2000);
   };
 
-  const handleChange = e => {
-    e.preventDefault();
-    setInputs({ ...inputs, [e.target.name]: e.target.value });
-  };
-
   const handleGetData = async () => {
     handleLoading();
     const res = await axios.post(
-      "/reports/clinician-reports/" + inputs.pNumber
+      "/reports/clinician-reports/"
     );
     setData(res.data);
     console.log(data);
