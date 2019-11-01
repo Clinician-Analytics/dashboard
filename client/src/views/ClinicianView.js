@@ -33,10 +33,10 @@ export default function ClinicianView() {
 
   return (
     <div className="div-a">
-      <h1>Clinician View</h1>
-      <TextField id="pNumber" name="pNumber" onChange={handleChange} />
+      <h1>Clinician Analytics</h1>
+      {/* <TextField id="pNumber" name="pNumber" onChange={handleChange} /> */}
       <Button variant="contained" color="secondary" onClick={handleGetData}>
-        Get Annual Reports
+        Get Individual Reports
       </Button>
       <span>{loading ? "Loading Data..." : null}</span>
       {data ? (
