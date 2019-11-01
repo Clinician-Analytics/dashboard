@@ -10,35 +10,36 @@ export default function SystemView() {
   const [loading, setLoading] = useState(false);
 
   const handleLoading = () => {
-    setLoading(true)
+    setLoading(true);
     setTimeout(() => {
-
-      setLoading(false)
+      setLoading(false);
     }, 2000);
-  }
+  };
 
   const handleGetData = async () => {
-    handleLoading()
+    handleLoading();
     const res = await axios.post("/reports/annual-reports");
     setData(res.data);
-    console.log(data)
+    console.log(data);
   };
 
   return (
-    <div>
-      <h1>Sytem View</h1>
-      <Button variant="contained" color="secondary" onClick={handleGetData}>Get Annual Reports</Button>
+    <div className="div-a">
+      <h1>Orange County EMS System View</h1>
+      <Button variant="contained" color="secondary" onClick={handleGetData}>
+        Get Annual Reports
+      </Button>
       <span>{loading ? "Loading Data..." : null}</span>
-      {data ?
+      {data ? (
         <>
-          <h3>Total Call Volume by Day</h3>
+          <h2>Total Call Volume by Day</h2>
           <CalendarHeatmap calendarData={data.heatmapData} />
-          <h3>Total Call Volume by Unit</h3>
+          <h2>Total Call Volume by Unit</h2>
           <CallVolumeByUnit callVolumeByUnit={data.callVolumeByUnitData} />
           <h3>Who Called?</h3>
           <RequestedByPie requestedBy={data.requestedByData} />
         </>
-        : null}
+      ) : null}
     </div>
   );
 }

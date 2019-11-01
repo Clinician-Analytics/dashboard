@@ -44,6 +44,10 @@ img {
   margin-bottom: 3rem;
 }
 
+.div-a {
+  text-align: center;
+}
+
 /* Text Styles*/
 .x-large {
   font-size: 4rem;
