@@ -9,6 +9,7 @@ import ClinicianView from "./views/ClinicianView";
 import SystemView from "./views/SystemView";
 import Login from "./views/Login";
 import Alert from "./views/Alert";
+import Register from "./views/Register";
 
 // redux
 import { Provider } from "react-redux";
@@ -35,6 +36,7 @@ const App = () => (
           <Route exact path="/officer-view" component={OfficerView} />
           <Route exact path="/clinician-view" component={ClinicianView} />
           <Route exact path="/system-view" component={SystemView} />
+          <Route exact path="/register" component={Register} />
         </Switch>
       </Fragment>
     </Router>
