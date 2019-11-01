@@ -36,7 +36,7 @@ export default function ClinicianView() {
       <h1>Clinician Analytics</h1>
       {/* <TextField id="pNumber" name="pNumber" onChange={handleChange} /> */}
       <Button variant="contained" color="secondary" onClick={handleGetData}>
-        Get Individual Reports
+        Get Annual Reports
       </Button>
       <span>{loading ? "Loading Data..." : null}</span>
       {data ? (
