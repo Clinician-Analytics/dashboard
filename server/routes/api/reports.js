@@ -79,7 +79,7 @@ router.post("/clinician-reports", auth, async (req, res) => {
     const contents = {}
     try {
         const heatmapData = await AnnualReport.aggregate([
-            { $match: { "id": p_number } },
+            { $match: { "clinician_id": p_number } },
             { $group: { _id: "$incident_id", day: { $addToSet: '$heatmap_date'}}},
             {
                 $unwind:"$day"
