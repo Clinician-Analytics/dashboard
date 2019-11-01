@@ -10,6 +10,7 @@ import SystemView from "./views/SystemView";
 import Login from "./views/Login";
 import Alert from "./views/Alert";
 import Register from "./views/Register";
+import PrivateRoute from "./components/routing/PrivateRoute";
 
 // redux
 import { Provider } from "react-redux";
@@ -32,10 +33,14 @@ const App = () => (
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/admin-view" component={AdminView} />
-          <Route exact path="/officer-view" component={OfficerView} />
-          <Route exact path="/clinician-view" component={ClinicianView} />
-          <Route exact path="/system-view" component={SystemView} />
+          <PrivateRoute exact path="/admin-view" component={AdminView} />
+          <PrivateRoute exact path="/officer-view" component={OfficerView} />
+          <PrivateRoute
+            exact
+            path="/clinician-view"
+            component={ClinicianView}
+          />
+          <PrivateRoute exact path="/system-view" component={SystemView} />
           <Route exact path="/register" component={Register} />
         </Switch>
       </Fragment>
