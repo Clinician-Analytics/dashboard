@@ -10,12 +10,18 @@ export default function FileUploadForm() {
     submitError: "",
     serverError: ""
   });
+  const [uploadStatus, setUploadStatus] = useState({
+    msg: ""
+  });
+  const [loading, setLoading] = useState(false);
 
   const handleFileSelect = e => {
     setFile(e.target.files[0])
   };
 
   const handleSubmit = async e => {
+    setLoading(true)
+    setUploadStatus({msg: ""})
     Papa.parse(file, {
       header: true,
       complete: async results => {
@@ -25,9 +31,14 @@ export default function FileUploadForm() {
             item.year = moment(item.callreceive_time).format("YYYY")
           })
           const res = await axios.post("/uploads", results)
+          if (res.status === 200){
+            setUploadStatus({msg: "Files Uploaded successfully"})
+            setLoading(false)
+          }
           console.log(res)
           setErrors({})
         } catch(err) {
+          setLoading(false)
           if(err.response.status === 500) {
             console.log('There was a problem with the server')
             setErrors( errors.serverError = 'There was a problem with the server')
@@ -55,6 +66,8 @@ export default function FileUploadForm() {
         <Button component="span">Select File</Button>
       </label>
       <Button onClick={handleSubmit}>Sumbit</Button>
+      <span>{loading ? "The system is processing your data, this will take about a minute." : null}</span>
+      <span>{uploadStatus ? uploadStatus.msg : null}</span>
     </div>
   );
 }
