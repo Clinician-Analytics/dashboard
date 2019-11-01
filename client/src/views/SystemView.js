@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CalendarHeatmap from "../components/visualizations/system/CalendarHeatmap";
 import CallVolumeByUnit from "../components/visualizations/system/CallVolumeByUnit";
-import RequestedByPie from "../components/visualizations/system/RequestedByPie";
+// import RequestedByPie from "../components/visualizations/system/RequestedByPie";
 import axios from "axios";
 import { Button } from "@material-ui/core";
 
@@ -36,8 +36,8 @@ export default function SystemView() {
           <CalendarHeatmap calendarData={data.heatmapData} />
           <h2>Total Call Volume by Unit</h2>
           <CallVolumeByUnit callVolumeByUnit={data.callVolumeByUnitData} />
-          <h3>Who Called?</h3>
-          <RequestedByPie requestedBy={data.requestedByData} />
+          {/* <h3>Who Called?</h3>
+          <RequestedByPie requestedBy={data.requestedByData} /> */}
         </>
       ) : null}
     </div>
