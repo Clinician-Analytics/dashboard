@@ -13,12 +13,14 @@ const users = require("./routes/api/users");
 const auth = require("./routes/api/auth");
 const uploads = require("./routes/api/uploads");
 const reports = require("./routes/api/reports");
+const system_data = require("./routes/api/incidents");
 
 // Use Routes
 app.use("/users", users);
 app.use("/auth", auth);
 app.use("/uploads", uploads);
 app.use("/reports", reports);
+app.use("/incidents", system_data);
 
 // Server static assets if in production
 if (process.env.NODE_ENV === "production") {

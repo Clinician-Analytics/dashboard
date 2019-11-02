@@ -1,18 +1,20 @@
 import React from "react";
 import { ResponsiveRadar } from "@nivo/radar";
-import { radarData } from '../../../formData/radarData';
+// import { radarData } from '../../../formData/radarData';
 // make sure parent container have a defined height when using
 // responsive component, otherwise height will be 0 and
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-export default function CallTypeRadar() {
+
+export default function CallTypeRadar(props) {
+  const { radarData } = props;
   return (
     <div style={{ height: "350px" }}>
       <ResponsiveRadar
         data={radarData}
         keys={["ALS", "BLS"]}
-        indexBy="disposition"
+        indexBy="ALS Disposition"
         maxValue="auto"
         margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
         curve="linearClosed"

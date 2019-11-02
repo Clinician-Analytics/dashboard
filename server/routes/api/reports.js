@@ -64,25 +64,9 @@ router.post("/annual-reports", async (req, res) => {
       item.label = item._id;
       delete item._id;
     });
-    const radarData = await AnnualReport.aggregate([
-      { $match: { als_bls: "Advanced Life Support" } },
-      { $group: { _id: "$incident_id", als_bls: { $addToSet: "$als_bls" } } },
-      {
-        $unwind: "$als_bls"
-      },
-      {
-        $group: { _id: "$als_bls", value: { $sum: 1 } }
-      }
-    ]);
-    radarData.map(item => {
-      item.id = item._id;
-      item.label = item._id;
-      delete item._id;
-    });
     contents.heatmapData = heatmapData;
     contents.callVolumeByUnitData = callVolumeByUnitData;
     contents.requestedByData = requestedByData;
-    contents.radarData = radarData;
     console.log(contents);
     res.send(contents);
   } catch (err) {
