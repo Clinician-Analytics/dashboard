@@ -10,9 +10,9 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       <li>
         <Link to="/admin-view">Admin View</Link>
       </li>
-      <li>
+      {/* <li>
         <Link to="/officer-view">Officer View</Link>
-      </li>
+      </li> */}
       <li>
         <Link to="/clinician-view">Clinician View</Link>
       </li>
