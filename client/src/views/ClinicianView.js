@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "@material-ui/core";
-import CalendarHeatmap from "../components/visualizations/system/CalendarHeatmap";
+import CalendarHeatmapClinician from "../components/visualizations/clinician/CalendarHeatmapClinician";
 import axios from "axios";
 
 export default function ClinicianView() {
@@ -16,9 +16,7 @@ export default function ClinicianView() {
 
   const handleGetData = async () => {
     handleLoading();
-    const res = await axios.post(
-      "/reports/clinician-reports/"
-    );
+    const res = await axios.post("/reports/clinician-reports/");
     setData(res.data);
     console.log(data);
   };
@@ -34,7 +32,7 @@ export default function ClinicianView() {
       {data ? (
         <>
           <h2>Total Call Volume by Day</h2>
-          <CalendarHeatmap calendarData={data.heatmapData} />
+          <CalendarHeatmapClinician calendarData={data.heatmapData} />
         </>
       ) : null}
     </div>

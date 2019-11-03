@@ -28,7 +28,6 @@ export default function CalendarHeatmap(props) {
             "#0482DD",
             "#002F50"
           ]}
-          maxValue={60}
           margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
           theme={calendarSettings.theme}
           yearSpacing={40}
