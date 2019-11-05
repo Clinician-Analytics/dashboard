@@ -26,7 +26,7 @@ export default function SystemView() {
 
   return (
     <div className="div-a">
-      <h1>Orange County EMS System Analytics</h1>
+      <h1>Orange County EMS Analytics</h1>
       <Button variant="contained" color="secondary" onClick={handleGetData}>
         Get Annual Reports
       </Button>

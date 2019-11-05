@@ -16,7 +16,7 @@ export default function ClinicianView() {
 
   const handleGetData = async () => {
     handleLoading();
-    const res = await axios.post("/reports/clinician-reports/");
+    const res = await axios.post("/incidents/clinician-reports/");
     setData(res.data);
     console.log(data);
   };

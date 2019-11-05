@@ -1,32 +1,27 @@
-export const radarData_static = [
+export const radarData_static_2018 = [
   {
-    disposition: "Unconscious",
-    ALS: 16,
-    BLS: 2
+    shift: "A Shift",
+    ALS: 1783,
+    BLS: 1136
   },
   {
-    disposition: "Chest Pains",
-    ALS: 27,
-    BLS: 0
+    shift: "B Shift",
+    ALS: 1817,
+    BLS: 1068
   },
   {
-    disposition: "Breathing Problems",
-    ALS: 21,
-    BLS: 4
+    shift: "C Shift",
+    ALS: 1876,
+    BLS: 970
   },
   {
-    disposition: "Transfer",
-    ALS: 30,
-    BLS: 25
+    shift: "D Shift",
+    ALS: 1809,
+    BLS: 1187
   },
   {
-    disposition: "Sick Person",
-    ALS: 15,
-    BLS: 16
-  },
-  {
-    disposition: "MVC with Injuries",
-    ALS: 2,
-    BLS: 16
+    shift: "SORS",
+    ALS: 29,
+    BLS: 163
   }
 ];
