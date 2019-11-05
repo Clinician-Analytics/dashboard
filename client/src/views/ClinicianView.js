@@ -32,7 +32,11 @@ export default function ClinicianView() {
       {data ? (
         <>
           <h2>Total Call Volume by Day</h2>
-          <CalendarHeatmapClinician calendarData={data.heatmapData} />
+          <CalendarHeatmapClinician calendarData={data.heatmapData_all} />
+          <h2>Total Call Volume by Day 2018</h2>
+          <CalendarHeatmapClinician calendarData={data.heatmapData_2018} />
+          <h2>Total Call Volume by Day 2019</h2>
+          <CalendarHeatmapClinician calendarData={data.heatmapData_2019} />
         </>
       ) : null}
     </div>

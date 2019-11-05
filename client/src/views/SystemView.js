@@ -34,9 +34,17 @@ export default function SystemView() {
       {data ? (
         <>
           <h2>Total Call Volume by Day</h2>
-          <CalendarHeatmap calendarData={data.heatmapData} />
+          <CalendarHeatmap calendarData={data.heatmapData_all} />
+          <h2>Total Call Volume by Day 2018</h2>
+          <CalendarHeatmap calendarData={data.heatmapData_2018} />
+          <h2>Total Call Volume by Day 2019</h2>
+          <CalendarHeatmap calendarData={data.heatmapData_2019} />
           <h2>Total Call Volume by Unit</h2>
-          <CallVolumeByUnit callVolumeByUnit={data.callVolumeByUnitData} />
+          <CallVolumeByUnit callVolumeByUnit={data.callVolumeByUnitData_all} />
+          <h2>Total Call Volume by Unit 2018</h2>
+          <CallVolumeByUnit callVolumeByUnit={data.callVolumeByUnitData_2018} />
+          <h2>Total Call Volume by Unit 2019</h2>
+          <CallVolumeByUnit callVolumeByUnit={data.callVolumeByUnitData_2019} />
           {/* <h3>Who Called?</h3>
           <RequestedByPie requestedBy={data.requestedByData} /> */}
         </>
