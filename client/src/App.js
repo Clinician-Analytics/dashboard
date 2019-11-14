@@ -6,11 +6,12 @@ import Navbar from "./components/menus/Navbar";
 import AdminView from "./views/AdminView";
 import OfficerView from "./views/OfficerView";
 import ClinicianView from "./views/ClinicianView";
-import SystemView from "./views/SystemView";
+import NewSystemView from "./views/NewSystemView";
 import Login from "./views/Login";
 import Alert from "./views/Alert";
 import Register from "./views/Register";
 import PrivateRoute from "./components/routing/PrivateRoute";
+import Landing from "./views/Landing";
 
 // redux
 import { Provider } from "react-redux";
@@ -33,6 +34,7 @@ const App = () => (
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path="/login" component={Login} />
+          <PrivateRoute exact path="/landing" component={Landing} />
           <PrivateRoute exact path="/admin-view" component={AdminView} />
           <PrivateRoute exact path="/officer-view" component={OfficerView} />
           <PrivateRoute
@@ -40,7 +42,7 @@ const App = () => (
             path="/clinician-view"
             component={ClinicianView}
           />
-          <PrivateRoute exact path="/system-view" component={SystemView} />
+          <PrivateRoute exact path="/system-view" component={NewSystemView} />
           <Route exact path="/register" component={Register} />
         </Switch>
       </Fragment>

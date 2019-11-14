@@ -3,26 +3,26 @@ import { ResponsiveBar } from "@nivo/bar";
 
 const barSettings = {
   theme: {
-    fontSize: "18px",
+    fontSize: "14px",
     textColor: "black",
     fontWeight: "900"
   }
 };
 
-export default function CallVolumeByUnit(props) {
-  const { callVolumeByUnit } = props;
+export default function SupportSignBar(props) {
+  const { support_signs } = props;
   return (
-    <div style={{ height: "425px" }}>
-      {callVolumeByUnit ? (
+    <div style={{ height: "600px" }}>
+      {support_signs ? (
         <ResponsiveBar
-          data={callVolumeByUnit}
-          keys={["callVolume"]}
+          data={support_signs}
+          keys={["count"]}
           indexBy="_id"
-          margin={{ top: 50, right: 100, bottom: 50, left: 100 }}
+          margin={{ top: 50, right: 50, bottom: 50, left: 350 }}
           theme={barSettings.theme}
           padding={0.3}
           layout="horizontal"
-          colors={{ scheme: "paired" }}
+          colors={{ scheme: "dark2" }}
           borderColor={{ from: "color", modifiers: [["darker", 1.6]] }}
           axisTop={null}
           axisRight={null}
@@ -30,7 +30,7 @@ export default function CallVolumeByUnit(props) {
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: "Call Volume",
+            legend: "Count",
             legendPosition: "middle",
             legendOffset: 32
           }}
@@ -44,7 +44,7 @@ export default function CallVolumeByUnit(props) {
           }}
           labelSkipWidth={16}
           labelSkipHeight={16}
-          labelTextColor={{ from: "color", modifiers: [["darker", 1.6]] }}
+          labelTextColor={{ from: "color", modifiers: [["darker", 2]] }}
           legends={[
             {
               dataFrom: "keys",

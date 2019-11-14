@@ -21,7 +21,7 @@ const Login = ({ login, isAuthenticated }) => {
   };
 
   if (isAuthenticated) {
-    return <Redirect to="/system-view" />;
+    return <Redirect to="/landing" />;
   }
 
   return (

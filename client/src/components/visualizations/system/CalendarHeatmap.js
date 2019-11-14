@@ -3,7 +3,7 @@ import { ResponsiveCalendar } from "@nivo/calendar";
 
 const calendarSettings = {
   theme: {
-    fontSize: "16px",
+    fontSize: "18px",
     textColor: "black",
     fontWeight: "900"
   }
@@ -13,7 +13,7 @@ export default function CalendarHeatmap(props) {
   const { calendarData } = props;
 
   return (
-    <div style={{ height: "400px" }}>
+    <div style={{ height: "450px" }}>
       {calendarData ? (
         <ResponsiveCalendar
           data={calendarData}

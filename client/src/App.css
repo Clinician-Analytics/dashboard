@@ -46,6 +46,16 @@ img {
 
 .div-a {
   text-align: center;
+  font-size: 1.2rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+.div-b {
+  text-align: center;
+  border: 5px solid rgb(0, 0, 0);
+  padding: 50px;
+  margin: 20px;
 }
 
 /* Text Styles*/
@@ -335,9 +345,18 @@ button {
 }
 
 /* Landing Page */
-.login {
+div.gallery {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 200px;
+}
+
+.landing {
   position: relative;
-  background: url("./img/temp_logo.png") no-repeat center center/cover;
+  background: url("./img/paramedic_icon.png") no-repeat center center/cover;
   height: 100vh;
 }
 

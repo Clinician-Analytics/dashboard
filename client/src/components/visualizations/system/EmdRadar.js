@@ -1,6 +1,6 @@
 import React from "react";
 import { ResponsiveRadar } from "@nivo/radar";
-import { radarData } from "../../../formData/radarData";
+import { radarData } from "../../../formData/nextradarData";
 
 const radarSettings = {
   theme: {

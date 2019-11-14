@@ -1,32 +1,42 @@
-export const radarData_static = [
+export const radarData = [
   {
-    disposition: "Unconscious",
-    ALS: 16,
-    BLS: 2
+    disposition: "No Complaints",
+    ALS: 432,
+    BLS: 959
   },
   {
-    disposition: "Chest Pains",
-    ALS: 27,
-    BLS: 0
+    disposition: "Chest Pain",
+    ALS: 1210,
+    BLS: 15
   },
   {
-    disposition: "Breathing Problems",
-    ALS: 21,
-    BLS: 4
+    disposition: "General Weakness",
+    ALS: 698,
+    BLS: 493
   },
   {
-    disposition: "Transfer",
-    ALS: 30,
-    BLS: 25
+    disposition: "Abdominal Pain",
+    ALS: 588,
+    BLS: 336
   },
   {
-    disposition: "Sick Person",
-    ALS: 15,
-    BLS: 16
+    disposition: "Syncope/Fainting",
+    ALS: 751,
+    BLS: 57
   },
   {
-    disposition: "MVC with Injuries",
-    ALS: 2,
-    BLS: 16
+    disposition: "Injury",
+    ALS: 1599,
+    BLS: 2145
+  },
+  {
+    disposition: "Alcohol related conditions",
+    ALS: 264,
+    BLS: 687
+  },
+  {
+    disposition: "Pain (Non-Traumatic",
+    ALS: 189,
+    BLS: 546
   }
 ];

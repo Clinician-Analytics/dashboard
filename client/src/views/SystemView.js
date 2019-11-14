@@ -26,7 +26,8 @@ export default function SystemView() {
 
   return (
     <div className="div-a">
-      <h1>Orange County EMS System Analytics</h1>
+      <h1>Orange County EMS Analytics</h1>
+
       <Button variant="contained" color="secondary" onClick={handleGetData}>
         Get Annual Reports
       </Button>
@@ -35,10 +36,10 @@ export default function SystemView() {
         <>
           <h2>Total Call Volume by Day</h2>
           <CalendarHeatmap calendarData={data.heatmapData_all} />
-          <h2>Total Call Volume by Day 2018</h2>
-          <CalendarHeatmap calendarData={data.heatmapData_2018} />
+          {/* <h2>Total Call Volume by Day 2018</h2> */}
+          {/* <CalendarHeatmap calendarData={data.heatmapData_2018} />
           <h2>Total Call Volume by Day 2019</h2>
-          <CalendarHeatmap calendarData={data.heatmapData_2019} />
+          <CalendarHeatmap calendarData={data.heatmapData_2019} /> */}
           <h2>Total Call Volume by Unit</h2>
           <CallVolumeByUnit callVolumeByUnit={data.callVolumeByUnitData_all} />
           <h2>Total Call Volume by Unit 2018</h2>

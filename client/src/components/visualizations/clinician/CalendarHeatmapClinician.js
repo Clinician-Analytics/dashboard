@@ -21,13 +21,14 @@ export default function CalendarHeatmap(props) {
           to="2019-12-31"
           emptyColor="#eeeeee"
           colors={[
-            "#FFFFFF",
-            "#E1F2FF",
-            "#91D1FF",
-            "#42B0FF",
-            "#0482DD",
-            "#002F50"
+            "#9ECB9E",
+            "#60AB60",
+            "#228B22",
+            "#195F19",
+            "#144C14",
+            "#0F390F"
           ]}
+          maxValue={10}
           margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
           theme={calendarSettings.theme}
           yearSpacing={40}
