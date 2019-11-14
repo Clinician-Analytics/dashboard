@@ -8,7 +8,7 @@ connectDB();
 
 // Init middleware
 // app.get("/", (req, res) => res.send("API Running"));
-app.use(express.json({ extended: false, limit: "50mb" }));
+app.use(express.json({ extended: false, limit: "100mb" }));
 
 const users = require("./routes/api/users");
 const auth = require("./routes/api/auth");
