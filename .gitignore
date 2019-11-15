@@ -109,3 +109,5 @@ config/default.json
 server/data/ryan..email.com/405gzm1lk1ccz724/in.json
 server/config/default.json
 "node_modules" 
+server/
+"server"
