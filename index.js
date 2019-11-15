@@ -37,4 +37,5 @@ if (process.env.NODE_ENV === "production") {
 
 const port = process.env.API_PORT || 5000;
 
-app.listen(port, () => console.log(`App listening ${port}`));
+// app.listen(port, () => console.log(`App listening ${port}`));
+app.listen(process.env.PORT || 5000);
