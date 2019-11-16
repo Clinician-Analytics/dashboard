@@ -72,23 +72,22 @@ export default function SystemData(props) {
             Quarter 1 of 2018 through Quarter 3 of 2019
           </p>
           <ShiftChart />
+          <h2>Radar Chart</h2>
+          <p>
+            Displays a comparison of a patients' disposition (ALS/BLS) with the
+            provider chosen primary impression (i.e. chest pain). Includes the
+            top 8 primary impressions, data from 2018-present, and excludes
+            blanks.
+          </p>
+          <CallTypeRadar />
+          <p>
+            Displays a comparison of a patients' disposition (ALS/BLS) with the
+            EMD Complaint (i.e. Fall).Includes the top 8 EMD codes, includes
+            data from 2018-present, and excludes blanks.
+          </p>
+          <EmdRadar />
         </>
       ) : null}
-      <div className="div-b">
-        <h2>Radar Chart</h2>
-        <p>
-          Displays a comparison of a patients' disposition (ALS/BLS) with the
-          provider chosen primary impression (i.e. chest pain). Includes the top
-          8 primary impressions, data from 2018-present, and excludes blanks.
-        </p>
-        <CallTypeRadar />
-        <p>
-          Displays a comparison of a patients' disposition (ALS/BLS) with the
-          EMD Complaint (i.e. Fall).Includes the top 8 EMD codes, includes data
-          from 2018-present, and excludes blanks.
-        </p>
-        <EmdRadar />
-      </div>
     </div>
   );
 }
