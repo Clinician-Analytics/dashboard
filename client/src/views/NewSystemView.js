@@ -6,6 +6,7 @@ import TimeAreaBumpChart from "../components/visualizations/system/TimeAreaBumpC
 import EmdRadar from "../components/visualizations/system/EmdRadar";
 import LineChart from "../components/visualizations/system/LineChart";
 import ShiftChart from "../components/visualizations/system/ShiftChart";
+import TimeUnit from "../components/visualizations/system/TimeUnit";
 import axios from "axios";
 import { Button } from "@material-ui/core";
 
@@ -72,6 +73,12 @@ export default function SystemData(props) {
             Quarter 1 of 2018 through Quarter 3 of 2019
           </p>
           <ShiftChart />
+          <h2>Average Time of Call with Patient Contact Only</h2>
+          <p>
+            Displays the average time (minutes) of calls where patient contact
+            was made.
+          </p>
+          <TimeUnit />
           <h2>Radar Chart</h2>
           <p>
             Displays a comparison of a patients' disposition (ALS/BLS) with the
