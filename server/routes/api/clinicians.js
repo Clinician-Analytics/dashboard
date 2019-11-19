@@ -8,7 +8,12 @@ const User = require("../../models/User");
 
 router.post("/report", auth, async (req, res) => {
   const user = await User.findById(req.user.id).select("-password");
-  const p_number = user.p_number;
+  let p_number;
+  if ( user ) {
+    p_number = user.p_number;
+  } else {
+    p_number= req.body.pNumber
+  }
   console.log(p_number);
   const contents = {};
   try {
