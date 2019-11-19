@@ -88,6 +88,76 @@ router.post("/report", auth, async (req, res) => {
   }
 });
 
+router.post("/admin", auth, async (req, res) => {
+  const user = await User.findById(req.user.id).select("-password");
+  let p_number;
+  if (user) {
+    p_number = user.p_number;
+  } else {
+    p_number = req.body.pNumber;
+  }
+  console.log(p_number);
+  const contents = {};
+  try {
+    const heatmapData_all = await AnnualReport.aggregate([
+      { $match: { clinician_id: p_number } },
+      { $group: { _id: "$incident_id", day: { $addToSet: "$heatmap_date" } } },
+      {
+        $unwind: "$day"
+      },
+      {
+        $group: { _id: "$day", value: { $sum: 1 } }
+      },
+      { $sort: { _id: 1 } }
+    ]);
+    heatmapData_all.map(day => {
+      day.day = day._id;
+      delete day._id;
+    });
+    const callVolumeByUnitData_19 = await AnnualReport.aggregate([
+      { $match: { clinician_id: p_number } },
+      { $match: { year: "2019" } },
+      { $group: { _id: "$incident_id", unit: { $addToSet: "$unit" } } },
+      {
+        $unwind: "$unit"
+      },
+      {
+        $group: { _id: "$unit", callVolume: { $sum: 1 } }
+      },
+      { $sort: { callVolume: 1 } }
+    ]);
+    const support_signs = await AnnualReport.aggregate([
+      {
+        $match: { support_sign: { $exists: true, $ne: "" } }
+      },
+      { $match: { clinician_id: p_number } },
+      { $match: { year: "2019" } },
+      {
+        $group: {
+          _id: "$incident_id",
+          support_sign: { $addToSet: "$support_sign" },
+          als_bls: { $addToSet: "$als_bls" }
+        }
+      },
+      {
+        $group: {
+          _id: "$support_sign",
+          count: { $sum: 1 }
+        }
+      },
+      { $sort: { count: -1 } },
+      { $limit: 20 }
+    ]);
+    contents.heatmapData_all = heatmapData_all;
+    contents.callVolumeByUnitData_19 = callVolumeByUnitData_19;
+    contents.support_signs = support_signs;
+    console.log(contents);
+    res.send(contents);
+  } catch (err) {
+    res.status(500).send("Server Error");
+  }
+});
+
 router.post("/stats", auth, async (req, res) => {
   const user = await User.findById(req.user.id).select("-password");
   const p_number = user.p_number;

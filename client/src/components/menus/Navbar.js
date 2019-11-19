@@ -8,9 +8,6 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
       {/* <li>
-        <Link to="/admin-view">Admin View</Link>
-      </li> */}
-      {/* <li>
         <Link to="/officer-view">Officer View</Link>
       </li> */}
       <li>
@@ -21,6 +18,9 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       </li>
       <li>
         <Link to="/system-view">System View</Link>
+      </li>
+      <li>
+        <Link to="/admin-view">Admin View</Link>
       </li>
       <li>
         <a onClick={logout} href="/">
@@ -62,7 +62,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { logout }
-)(Navbar);
+export default connect(mapStateToProps, { logout })(Navbar);
